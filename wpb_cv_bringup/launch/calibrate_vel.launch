@@ -1,0 +1,9 @@
+<launch>
+
+<!-- wpb_cv minimal -->
+<include file="$(find wpb_cv_bringup)/launch/minimal.launch"/>
+
+<!-- calibrate velocity -->
+ <node pkg="wpb_cv_bringup" type="wpb_cv_calibrate_velocity" name="wpb_cv_calibrate_velocity"  output="screen"/>
+
+</launch>

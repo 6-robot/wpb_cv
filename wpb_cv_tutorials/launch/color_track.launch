@@ -1,0 +1,12 @@
+<launch>
+
+<!-- wpb_cv minimal -->
+<include file="$(find wpb_cv_bringup)/launch/minimal.launch"/>
+
+<!-- astra camera -->
+<include file="$(find astra_launch)/launch/astra.launch"/>
+
+<!-- color track -->
+ <node pkg="wpb_cv_tutorials" type="wpb_cv_color_track" name="wpb_cv_color_track"  output="screen"/>
+
+</launch>

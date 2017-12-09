@@ -1,0 +1,9 @@
+<launch>
+
+<!-- wpb_cv minimal -->
+<include file="$(find wpb_cv_bringup)/launch/minimal.launch"/>
+
+<!-- velocity control -->
+ <node pkg="wpb_cv_tutorials" type="wpb_cv_velocity_control" name="wpb_cv_velocity_control"  output="screen"/>
+
+</launch>

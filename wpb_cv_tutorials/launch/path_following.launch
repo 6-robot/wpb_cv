@@ -1,0 +1,9 @@
+<launch>
+
+<!-- wpb_cv minimal -->
+<include file="$(find wpb_cv_bringup)/launch/minimal.launch"/>
+
+<!-- path following -->
+ <node pkg="wpb_cv_tutorials" type="wpb_cv_path_following" name="wpb_cv_path_following"  output="screen"/>
+
+</launch>

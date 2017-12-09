@@ -1,0 +1,12 @@
+<launch>
+  
+  
+
+  <!-- wpb_cv minimal -->
+  <include file="$(find wpb_cv_bringup)/launch/minimal.launch"/>
+
+ 
+  <!-- slam move -->
+  <node pkg="wpb_cv_tutorials" type="wpb_cv_slam_move" name="wpb_cv_slam_move"  output="screen"/>
+
+</launch>

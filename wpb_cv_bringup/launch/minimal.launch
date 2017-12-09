@@ -1,0 +1,9 @@
+<launch>
+
+  <!-- wpb_cv_bringup -->
+  <node pkg="wpb_cv_bringup" type="wpb_cv_core" name="wpb_cv_core" output="screen">
+    <param name="serial_port" type="string" value="/dev/ftdi"/> 
+    <rosparam file="$(find wpb_cv_bringup)/config/settings.yaml" command="load" />
+  </node>
+
+</launch>

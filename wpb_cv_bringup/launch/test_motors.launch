@@ -1,0 +1,8 @@
+<launch>
+
+<!-- test motors -->
+ <node pkg="wpb_cv_bringup" type="wpb_cv_test_motors" name="wpb_cv_test_motors"  output="screen">
+    <param name="serial_port" type="string" value="/dev/ftdi"/> 
+</node>
+
+</launch>

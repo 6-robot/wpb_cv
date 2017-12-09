@@ -1,0 +1,9 @@
+<launch>
+
+<!-- wpb_cv minimal -->
+<include file="$(find wpb_cv_bringup)/launch/minimal.launch"/>
+
+<!-- AD sensor -->
+ <node pkg="wpb_cv_tutorials" type="wpb_cv_ad_sensor" name="wpb_cv_ad_sensor"  output="screen"/>
+
+</launch>

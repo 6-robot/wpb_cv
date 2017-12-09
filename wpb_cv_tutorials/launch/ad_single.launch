@@ -1,0 +1,12 @@
+<launch>
+
+    <!-- wpb_cv minimal -->
+    <include file="$(find wpb_cv_bringup)/launch/minimal.launch"/>
+
+    <!-- AD single -->
+    <node pkg="wpb_cv_tutorials" type="wpb_cv_ad_single" name="wpb_cv_ad_single"  output="screen"/>
+
+    <!--- rqt_plot -->
+    <node pkg='rqt_plot' name='rqt_plot' type='rqt_plot' args='/wpb_cv/ad_sensor'/>
+
+</launch>

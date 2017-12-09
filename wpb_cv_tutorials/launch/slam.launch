@@ -1,0 +1,35 @@
+<launch>
+  
+  <arg name="model" default="$(find wpb_cv_bringup)/urdf/wpb_cv_omni.urdf"/>
+  <arg name="gui" default="true" />
+
+  <param name="robot_description" command="$(find xacro)/xacro.py $(arg model)" />
+  <param name="use_gui" value="$(arg gui)"/>
+  <arg name="rvizconfig" default="$(find wpb_cv_tutorials)/rviz/slam.rviz" />
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" />
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" />
+
+  <node pkg="gmapping" type="slam_gmapping" name="slam_gmapping">
+    <param name="base_frame" value="base_footprint"/>
+    <param name="map_update_interval" value="1.0"/>
+  </node>
+
+  <!-- wpb_cv minimal -->
+  <include file="$(find wpb_cv_bringup)/launch/minimal.launch"/>
+
+  <!-- astra camera -->
+  <include file="$(find astra_launch)/launch/astra.launch"/>
+
+  <!-- depth to scan -->
+  <node name="depthimage_to_laserscan" pkg="depthimage_to_laserscan" type="depthimage_to_laserscan">
+    <remap from="image" to="/camera/depth/image"/>
+    <remap from="camera_info" to="/camera/depth/camera_info"/>
+    <remap from="scan" to="/scan"/>
+    <param name="range_max" type="double" value="8"/>
+  </node>
+
+  <!-- slam move -->
+  <node pkg="wpb_cv_tutorials" type="wpb_cv_slam_move" name="wpb_cv_slam_move"/>
+
+</launch>
