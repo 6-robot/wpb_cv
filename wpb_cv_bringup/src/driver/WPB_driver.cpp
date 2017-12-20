@@ -313,12 +313,11 @@ void CWPB_driver::Omni(float inX, float inY, float inAngular)
 	nMotorToSend[0] = 0;	//left front
 	nMotorToSend[0] = -vkx*nVectorX + nVectorY*0.5 + nVectorTurn;
 
-	nMotorToSend[1] = 0;	//back 
-	nMotorToSend[1] = -nVectorY + nVectorTurn;
+	nMotorToSend[1] = 0;	//right front
+	nMotorToSend[1] = vkx*nVectorX + nVectorY*0.5 + nVectorTurn;
 
-	nMotorToSend[2] = 0;	//right front
-	nMotorToSend[2] = vkx*nVectorX + nVectorY*0.5 + nVectorTurn;
-
+	nMotorToSend[2] = 0;	//back 
+	nMotorToSend[2] = -nVectorY + nVectorTurn;
 
 	nMotorToSend[3] = 0;	//NC
 
