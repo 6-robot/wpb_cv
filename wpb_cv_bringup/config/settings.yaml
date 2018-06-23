@@ -1,8 +1,8 @@
-# chassis_type: 2wd
-# chassis_type: 4wd
-# chassis_type: omni
-# chassis_type: mecanum
+#chassis_type: 2wd
+#chassis_type: 4wd
+#chassis_type: omni
+#chassis_type: mecanum
 
- zeros:
+zeros:
   camera_height: 0.75
   camera_pitch: -0.12
