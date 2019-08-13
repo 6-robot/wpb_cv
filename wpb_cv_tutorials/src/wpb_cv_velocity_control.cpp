@@ -45,6 +45,7 @@ int main(int argc, char** argv)
   ros::NodeHandle n;
   ros::Publisher vel_pub = n.advertise<geometry_msgs::Twist>("/cmd_vel", 10);
   ros::Rate loop_rate(30);
+  int nCountToStop = 0;   //计时然后停止
 
   while(ros::ok())
   {
@@ -55,6 +56,16 @@ int main(int argc, char** argv)
     vel_cmd.angular.x = 0;
     vel_cmd.angular.y = 0;
     vel_cmd.angular.z = 0.1;
+
+    //运行10秒后自动停止(速度全赋值0)
+    nCountToStop ++;
+    if(nCountToStop > 300)
+    {
+        vel_cmd.linear.x = 0;
+        vel_cmd.angular.z = 0;
+        ROS_WARN("Stop!");
+    }
+
     vel_pub.publish(vel_cmd);
     ros::spinOnce();
     loop_rate.sleep();

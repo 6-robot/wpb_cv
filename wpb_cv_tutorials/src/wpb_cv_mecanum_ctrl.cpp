@@ -34,90 +34,76 @@
 /*!******************************************************************
  @author     ZhangWanjie
  ********************************************************************/
-
 #include <ros/ros.h>
-#include <std_msgs/Int32MultiArray.h>
 #include <geometry_msgs/Twist.h>
 
-geometry_msgs::Twist vel_cmd;   //速度消息包
-static int arADVal[15];
-
-void AD_Callback(const std_msgs::Int32MultiArray msg)
-{
-    if(msg.data.size() < 15)
-        return;
-
-    //获取AD值
-    for(int i=0;i<15;i++)
-    {
-        arADVal[i] = msg.data[i];
-    }
-}
+static int state = 0;
 
 int main(int argc, char** argv)
 {
-    ros::init(argc, argv, "wpb_cv_avoid_obstacles");
+    ros::init(argc, argv, "wpb_cv_mecanum_ctrl");
 
     ros::NodeHandle n;
-    ros::Subscriber sub_ad = n.subscribe("/wpb_cv/ad", 100, AD_Callback);
     ros::Publisher vel_pub = n.advertise<geometry_msgs::Twist>("/cmd_vel", 10);
 
-    vel_cmd.linear.x = 0;
-    vel_cmd.linear.y = 0;
-    vel_cmd.linear.z = 0;
-    vel_cmd.angular.x = 0;
-    vel_cmd.angular.y = 0;
-    vel_cmd.angular.z = 0;
-    vel_pub.publish(vel_cmd);
+    ros::Rate loop_rate(0.2);
 
-    ros::Rate loop_rate(30);
-    int nCountToStop = 0;   //计时然后停止
+    geometry_msgs::Twist vel_cmd;
+
 
     while(ros::ok())
     {
-        //显示AD值
-        printf("[AD]");
-        for(int i=5;i<7;i++)
+        switch(state)
         {
-            printf(" ad%d=%d ",i+1,arADVal[i]);
+            case 0:
+                vel_cmd.linear.x = 0;
+                vel_cmd.linear.y = 0;
+                vel_cmd.linear.z = 0;
+                vel_cmd.angular.x = 0;
+                vel_cmd.angular.y = 0;
+                vel_cmd.angular.z = 0;
+                vel_pub.publish(vel_cmd);
+                printf("[启智CV] 停止\n");
+                state ++;
+                break;
+            case 1:
+                vel_cmd.linear.x = 0.1;
+                vel_pub.publish(vel_cmd);
+                printf("[启智CV] 前进\n");
+                state ++;
+                break;
+            case 2:
+                vel_cmd.linear.x = 0;
+                vel_cmd.linear.y = -0.1;
+                vel_pub.publish(vel_cmd);
+                printf("[启智CV] 右平移\n");
+                state ++;
+                break;
+            case 3:
+                vel_cmd.linear.x = -0.1;
+                vel_cmd.linear.y = 0;
+                vel_pub.publish(vel_cmd);
+                printf("[启智CV] 后退\n");
+                state ++;
+                break;
+            case 4:
+                vel_cmd.linear.x = 0;
+                vel_cmd.linear.y = 0.1;
+                vel_pub.publish(vel_cmd);
+                printf("[启智CV] 左平移\n");
+                state ++;
+                break;
+            case 5:
+                vel_cmd.linear.x = 0;
+                vel_cmd.linear.y = 0;
+                vel_pub.publish(vel_cmd);
+                printf("[启智CV] 结束\n");
+                break;
         }
-        printf("\n");
 
-        //默认速度值(如果灰度传感器没有检测到黑线,默认机器人正沿着线走,则直行即可)
-        vel_cmd.linear.x = 0.05;
-        vel_cmd.angular.z = 0;
-
-        //检测左前灰度传感器是否检测到黑线
-        if(arADVal[5] < 1000)
-        {
-            vel_cmd.linear.x = 0.05;
-            vel_cmd.angular.z = 0.1;
-        }
-
-        //检测右前灰度传感器是否检测到黑线
-        if(arADVal[6] < 1000)
-        {
-            vel_cmd.linear.x = 0.05;
-            vel_cmd.angular.z = -0.1;
-        }
-
-        //运行10秒后自动停止(速度全赋值0)
-        nCountToStop ++;
-        if(nCountToStop > 300)
-        {
-            vel_cmd.linear.x = 0;
-            vel_cmd.angular.z = 0;
-            ROS_WARN("Stop!");
-        }
-
-        //向底盘发送速度值
-        vel_pub.publish(vel_cmd);
-
-        //延时
         ros::spinOnce();
         loop_rate.sleep();
     }
-
 
     return 0;
 }

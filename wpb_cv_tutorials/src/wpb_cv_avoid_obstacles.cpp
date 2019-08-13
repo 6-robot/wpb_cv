@@ -71,6 +71,7 @@ int main(int argc, char** argv)
     vel_pub.publish(vel_cmd);
 
     ros::Rate loop_rate(10);
+    int nCountToStop = 0;   //计时然后停止
 
     while(ros::ok())
     {
@@ -98,6 +99,15 @@ int main(int argc, char** argv)
         {
             vel_cmd.linear.x = 0;
             vel_cmd.angular.z = 0.3;
+        }
+
+        //运行10秒后自动停止(速度全赋值0)
+        nCountToStop ++;
+        if(nCountToStop > 100)
+        {
+            vel_cmd.linear.x = 0;
+            vel_cmd.angular.z = 0;
+            ROS_WARN("Stop!");
         }
 
         //向底盘发送速度值

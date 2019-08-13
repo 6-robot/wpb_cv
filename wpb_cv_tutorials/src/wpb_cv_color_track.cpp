@@ -56,6 +56,7 @@ static int iHighV = 255;
 
 geometry_msgs::Twist vel_cmd;   //速度消息包
 ros::Publisher vel_pub;         //速度发送
+int nCountToStop = 0;   //计时然后停止
 
 void Cam_RGB_Callback(const sensor_msgs::ImageConstPtr& msg)
 {
@@ -153,6 +154,15 @@ void Cam_RGB_Callback(const sensor_msgs::ImageConstPtr& msg)
     imshow("HSV", imgHSV);
     imshow("Result", imgThresholded);
     cv::waitKey(1);
+
+    //运行10秒(300帧图像)后自动停止
+    nCountToStop ++;
+    if(nCountToStop > 300)
+    {
+        vel_cmd.linear.x = 0;
+        vel_cmd.angular.z = 0;
+        ROS_WARN("Stop!");
+    }
 
     vel_pub.publish(vel_cmd);
     printf("机器人运动速度( linear= %.2f , angular= %.2f )\n",vel_cmd.linear.x,vel_cmd.angular.z);
