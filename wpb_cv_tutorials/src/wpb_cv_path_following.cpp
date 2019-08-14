@@ -56,7 +56,7 @@ void AD_Callback(const std_msgs::Int32MultiArray msg)
 
 int main(int argc, char** argv)
 {
-    ros::init(argc, argv, "wpb_cv_avoid_obstacles");
+    ros::init(argc, argv, "wpb_cv_path_following");
 
     ros::NodeHandle n;
     ros::Subscriber sub_ad = n.subscribe("/wpb_cv/ad", 100, AD_Callback);

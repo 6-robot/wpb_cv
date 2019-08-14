@@ -70,7 +70,7 @@ int main(int argc, char** argv)
     vel_cmd.angular.z = 0;
     vel_pub.publish(vel_cmd);
 
-    ros::Rate loop_rate(10);
+    ros::Rate loop_rate(2);
     int nCountToStop = 0;   //计时然后停止
 
     while(ros::ok())
