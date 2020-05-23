@@ -8,7 +8,7 @@ project(wpb_cv_tutorials)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED)
-find_package(OpenCV 2.4.3 REQUIRED)
+find_package(OpenCV REQUIRED)
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
@@ -252,7 +252,7 @@ add_executable(wpb_cv_camera_rgb
 )
 add_dependencies(wpb_cv_camera_rgb ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 target_link_libraries(wpb_cv_camera_rgb
-  ${catkin_LIBRARIES}
+  ${catkin_LIBRARIES} ${OpenCV_LIBRARIES}
 )
 
 add_executable(wpb_cv_hsv_test
@@ -260,7 +260,7 @@ add_executable(wpb_cv_hsv_test
 )
 add_dependencies(wpb_cv_hsv_test ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 target_link_libraries(wpb_cv_hsv_test
-  ${catkin_LIBRARIES}
+  ${catkin_LIBRARIES} ${OpenCV_LIBRARIES}
 )
 
 add_executable(wpb_cv_color_track
@@ -268,7 +268,7 @@ add_executable(wpb_cv_color_track
 )
 add_dependencies(wpb_cv_color_track ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 target_link_libraries(wpb_cv_color_track
-  ${catkin_LIBRARIES}
+  ${catkin_LIBRARIES} ${OpenCV_LIBRARIES}
 )
 
 add_executable(wpb_cv_hsv_file
@@ -276,7 +276,7 @@ add_executable(wpb_cv_hsv_file
 )
 add_dependencies(wpb_cv_hsv_file ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 target_link_libraries(wpb_cv_hsv_file
-  ${catkin_LIBRARIES}
+  ${catkin_LIBRARIES} ${OpenCV_LIBRARIES}
 )
 
 add_executable(wpb_cv_imu_demo

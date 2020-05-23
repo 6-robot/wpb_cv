@@ -44,6 +44,7 @@
 #include <geometry_msgs/Twist.h>
 
 using namespace cv;
+using namespace std;
 
 static int iLowH = 20;
 static int iHighH = 80;
