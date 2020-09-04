@@ -7,9 +7,7 @@
   <param name="robot_description" command="$(find xacro)/xacro.py $(arg model)" />
   <param name="use_gui" value="$(arg gui)"/>
 
-  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
-    <rosparam file="$(find wpb_home_bringup)/config/wpb_home.yaml" command="load" />
-  </node>
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher"/>
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher"/>
   <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" />
 
@@ -62,5 +60,21 @@
   </node>
 
   <include file="$(find astra_launch)/launch/astra.launch"/>
+
+  <!-- wpb_cv minimal -->
+  <include file="$(find wpb_cv_bringup)/launch/minimal.launch"/>
+  
+  <!-- joy node -->
+  <node respawn="true" pkg="joy" type="joy_node" name="wpb_cv_joy" >
+    <param name="dev" type="string" value="/dev/input/js0" />
+    <param name="deadzone" value="0.12" />
+  </node>
+
+  <!-- Axes Velcmd -->
+  <param name="axis_linear" value="1" type="int"/>
+  <param name="axis_angular" value="0" type="int"/>
+  <param name="scale_linear" value="1" type="double"/>
+  <param name="scale_angular" value="1" type="double"/>
+  <node pkg="wpb_cv_bringup" type="wpb_cv_js_vel" name="teleop"/>
 
 </launch>

@@ -221,3 +221,11 @@ add_dependencies(wpb_cv_calibrate_velocity ${${PROJECT_NAME}_EXPORTED_TARGETS} $
 target_link_libraries(wpb_cv_calibrate_velocity
   ${catkin_LIBRARIES}
 )
+
+add_executable(wpb_cv_lidar_filter
+  src/wpb_cv_lidar_filter.cpp
+)
+add_dependencies(wpb_cv_lidar_filter ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(wpb_cv_lidar_filter
+  ${catkin_LIBRARIES}
+)
