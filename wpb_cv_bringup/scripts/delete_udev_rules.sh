@@ -3,6 +3,9 @@
 echo "***************"
 echo "delete the remap device serial port to ftdi"
 sudo rm   /etc/udev/rules.d/ftdi.rules
+sudo rm   /etc/udev/rules.d/56-orbbec-usb.rules
+echo "delete the remap device serial port to rplidar"
+sudo rm   /etc/udev/rules.d/rplidar.rules
 echo "Restarting udev"
 sudo service udev reload
 sudo service udev restart
