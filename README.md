@@ -22,6 +22,7 @@ cd ~/catkin_ws/src/
 git clone https://github.com/6-robot/wpb_cv.git
 git clone https://github.com/orbbec/ros_astra_camera.git
 git clone https://github.com/orbbec/ros_astra_launch.git
+git clone https://github.com/ros-drivers/rgbd_launch.git
 ```
 5. 设置设备权限
 ```
