@@ -2,21 +2,19 @@
 
 ## 使用步骤
 
-1. 安装ROS(indigo/Ubuntu 14.04). [安装步骤](http://wiki.ros.org/indigo/Installation/Ubuntu)
+1. 安装ROS(melodic/Ubuntu 18.04). [安装步骤](http://wiki.ros.org/melodic/Installation/Ubuntu)
 2. 配置好开发环境. [配置方法](http://wiki.ros.org/ROS/Tutorials/InstallingandConfiguringROSEnvironment)
 3. 安装依赖项:
 ```
-sudo apt-get install ros-indigo-joy
-sudo apt-get install ros-indigo-hector-mapping
-sudo apt-get install ros-indigo-gmapping
-sudo apt-get install ros-indigo-map-server
-sudo apt-get install ros-indigo-navigation
-sudo apt-get install ros-indigo-move-base
-sudo apt-get install ros-indigo-amcl
-sudo apt-get install ros-indigo-sound-play
-sudo apt-get install ros-indigo-astra-camera
-sudo apt-get install ros-indigo-astra-launch
-sudo apt-get install ros-indigo-depthimage-to-laserscan
+sudo apt-get install ros-melodic-joy
+sudo apt-get install ros-melodic-hector-mapping
+sudo apt-get install ros-melodic-gmapping
+sudo apt-get install ros-melodic-navigation
+sudo apt-get install ros-melodic-sound-play
+sudo apt-get install ros-melodic-astra-camera
+sudo apt-get install ros-melodic-astra-launch
+sudo apt-get install ros-melodic-depthimage-to-laserscan
+sudo apt-get install ros-melodic-libuvc
 ```
 4. 获取源码:
 ```

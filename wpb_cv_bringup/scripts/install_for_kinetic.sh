@@ -7,3 +7,4 @@ sudo apt-get install ros-kinetic-sound-play
 sudo apt-get install ros-kinetic-astra-camera
 sudo apt-get install ros-kinetic-astra-launch
 sudo apt-get install ros-kinetic-depthimage-to-laserscan
+sudo apt-get install ros-kinetic-libuvc

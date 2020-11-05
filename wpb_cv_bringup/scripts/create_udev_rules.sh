@@ -8,7 +8,7 @@ sudo cp `rospack find wpb_cv_bringup`/scripts/56-orbbec-usb.rules  /etc/udev/rul
 
 echo "remap the device serial port(ttyUSBX) to rplidar"
 echo "start copy rplidar.rules to  /etc/udev/rules.d/"
-sudo cp `rospack find wpb_home_bringup`/scripts/rplidar.rules  /etc/udev/rules.d
+sudo cp `rospack find wpb_cv_bringup`/scripts/rplidar.rules  /etc/udev/rules.d
 
 echo "Restarting udev"
 sudo service udev reload
