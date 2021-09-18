@@ -310,3 +310,11 @@ add_dependencies(wpb_cv_mecanum_ctrl ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catki
 target_link_libraries(wpb_cv_mecanum_ctrl
   ${catkin_LIBRARIES}
 )
+
+add_executable(wpb_cv_detect_edge
+  src/wpb_cv_detect_edge.cpp
+)
+add_dependencies(wpb_cv_detect_edge ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(wpb_cv_detect_edge
+  ${catkin_LIBRARIES} ${OpenCV_LIBRARIES}
+)
