@@ -174,7 +174,7 @@ int main(int argc, char **argv)
     ros::init(argc, argv, "wpb_cv_color_track");
    
     ros::NodeHandle nh;
-    ros::Subscriber rgb_sub = nh.subscribe("/camera/rgb/image_rect_color", 1 , Cam_RGB_Callback);
+    ros::Subscriber rgb_sub = nh.subscribe("/camera/color/image_raw", 1 , Cam_RGB_Callback);
     vel_pub = nh.advertise<geometry_msgs::Twist>("/cmd_vel", 30);
 
     ros::Rate loop_rate(30);

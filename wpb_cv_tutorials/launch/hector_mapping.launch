@@ -59,7 +59,7 @@
     <param name="range_max" type="double" value="8"/>
   </node>
 
-  <include file="$(find astra_launch)/launch/astra.launch"/>
+  <include file="$(find astra_camera)/launch/astra.launch"/>
 
   <!-- wpb_cv minimal -->
   <include file="$(find wpb_cv_bringup)/launch/minimal.launch"/>

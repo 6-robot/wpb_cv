@@ -15,6 +15,6 @@
   <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" />
 
   <!-- astra camera -->
-  <include file="$(find astra_launch)/launch/astra.launch"/>
+  <include file="$(find astra_camera)/launch/astra.launch"/>
 
 </launch>

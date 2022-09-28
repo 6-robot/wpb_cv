@@ -1,7 +1,7 @@
 <launch>
 
     <!-- astra camera -->
-    <include file="$(find astra_launch)/launch/astra.launch"/>
+    <include file="$(find astra_camera)/launch/astra.launch"/>
 
     <!-- detect edge -->
     <node pkg="wpb_cv_tutorials" type="wpb_cv_detect_edge" name="wpb_cv_detect_edge"  output="screen"/>

@@ -89,7 +89,7 @@ int main(int argc, char **argv)
     ros::init(argc, argv, "wpb_cv_detect_edge_node");
    
     ros::NodeHandle nh;
-    ros::Subscriber rgb_sub = nh.subscribe("/camera/rgb/image_raw", 1 , Cam_RGB_Callback);
+    ros::Subscriber rgb_sub = nh.subscribe("/camera/color/image_raw", 1 , Cam_RGB_Callback);
 
     ros::Rate loop_rate(30);
     while( ros::ok())
