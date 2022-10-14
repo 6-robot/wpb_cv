@@ -149,16 +149,17 @@ int main(int argc, char **argv)
     ros::Rate loop_rate(30);
 
     //生成图像显示和参数调节的窗口空见
-    namedWindow("Control", CV_WINDOW_AUTOSIZE);
+    namedWindow("Control", WINDOW_AUTOSIZE);
 
-    cvCreateTrackbar("LowH", "Control", &iLowH, 179); //Hue (0 - 179)
-    cvCreateTrackbar("HighH", "Control", &iHighH, 179);
+    createTrackbar("LowH", "Threshold", &iLowH, 179); //Hue (0 - 179)
+    createTrackbar("HighH", "Threshold", &iHighH, 179);
 
-    cvCreateTrackbar("LowS", "Control", &iLowS, 255); //Saturation (0 - 255)
-    cvCreateTrackbar("HighS", "Control", &iHighS, 255);
+    createTrackbar("LowS", "Threshold", &iLowS, 255); //Saturation (0 - 255)
+    createTrackbar("HighS", "Threshold", &iHighS, 255);
 
-    cvCreateTrackbar("LowV", "Control", &iLowV, 255); //Value (0 - 255)
-    cvCreateTrackbar("HighV", "Control", &iHighV, 255);
+    createTrackbar("LowV", "Threshold", &iLowV, 255); //Value (0 - 255)
+    createTrackbar("HighV", "Threshold", &iHighV, 255);
+
 
     namedWindow("RGB"); 
     namedWindow("HSV"); 
